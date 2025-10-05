@@ -95,7 +95,7 @@ Ce programme vous guide **du fondamental au déploiement**, en 6 mois intensifs,
 ### 1. Cloner le dépôt
 
 ```bash
-git clone https://github.com/votre-org/python-accelerated-enspy-2025.git
+git clone https://github.com/Delmat237/python-accelerated-enspy-2025.git
 cd python-accelerated-enspy-2025
 ```
 
