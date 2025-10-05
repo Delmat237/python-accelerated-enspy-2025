@@ -5,27 +5,42 @@ Ce programme vous guide **du fondamental au déploiement**, en 6 mois intensifs,
 
 ---
 
+## 📑 Sommaire
+
+- [🧭 Objectifs](#-objectifs)
+- [🗓️ Roadmap 6 Mois](#️-roadmap-6-mois)
+- [🧱 Structure du Dépôt](#-structure-du-dépôt)
+- [🛠️ Installation & Configuration](#️-installation--configuration)
+- [🧪 Validation Professionnelle](#-validation-professionnelle)
+- [📎 Ressources Utiles](#-ressources-utiles)
+- [🧠 Inspiré de](#-inspiré-de)
+- [🧑‍🏫 Crédits](#-crédits)
+- [📝 Licence](#-licence)
+
+---
+
 ## 🧭 Objectifs
-- Maîtriser la syntaxe et la logique Python moderne.
-- Construire des API performantes avec **FastAPI** et des apps web avec **Django**.
-- Explorer les bases de la **Data Science** (NumPy, Pandas, scikit-learn).
-- Déployer des applications conteneurisées avec **Docker** et CI/CD.
+
+- Maîtriser la syntaxe et la logique Python moderne.  
+- Construire des API performantes avec **FastAPI** et des apps web avec **Django**.  
+- Explorer les bases de la **Data Science** (NumPy, Pandas, scikit-learn).  
+- Déployer des applications conteneurisées avec **Docker** et CI/CD.  
 - Constituer un **portfolio GitHub** professionnel validé par code review.
 
 ---
 
 ## 🗓️ Roadmap 6 Mois
 
-| Mois | Module Principal | Focus | Projet Fil Rouge |
-|------|-------------------|-------|------------------|
-| 1 | Fondations & Algorithmique | Syntaxe, Structures, Fonctions, I/O | 📝 Simulateur de Bourse |
-| 2 | POO & Architecture | Héritage, Tests Unitaires | 🏦 Système de Gestion Bancaire |
-| 3 | Python Avancé & Asynchrone | Décorateurs, Asyncio, Threads | 🕸️ Scraper Web Asynchrone |
-| 4 | APIs Haute Performance | FastAPI, JWT, PostgreSQL | 🧩 Microservices REST |
-| 5 | Full-Stack Django | ORM, DRF, MVT | 📰 Blog / Forum Complet |
-| 6 | Data & DevOps | Pandas, ML, Docker, CI/CD | 🚢 Application Déployée en Production |
+| Mois | Module Principal             | Focus                                | Projet Fil Rouge                       |
+|------|-------------------------------|---------------------------------------|-----------------------------------------|
+| 1    | Fondations & Algorithmique    | Syntaxe, Structures, Fonctions, I/O  | 📝 Simulateur de Bourse                |
+| 2    | POO & Architecture           | Héritage, Tests Unitaires           | 🏦 Système de Gestion Bancaire        |
+| 3    | Python Avancé & Asynchrone  | Décorateurs, Asyncio, Threads      | 🕸️ Scraper Web Asynchrone          |
+| 4    | APIs Haute Performance      | FastAPI, JWT, PostgreSQL           | 🧩 Microservices REST               |
+| 5    | Full-Stack Django           | ORM, DRF, MVT                      | 📰 Blog / Forum Complet             |
+| 6    | Data & DevOps               | Pandas, ML, Docker, CI/CD         | 🚢 Application Déployée en Production |
 
-> 📚 Structure détaillée extraite de la [roadmap officielle](./roadmap_python.pdf):contentReference[oaicite:1]{index=1}.
+> 📚 Structure détaillée extraite de la [roadmap officielle](./roadmap_python.pdf):contentReference[oaicite:0]{index=0}.
 
 ---
 
@@ -131,7 +146,7 @@ pip install -r requirements.txt
 ## 🧑‍🏫 Crédits
 
 > Département de Génie Informatique – ENSPY
-> Programme 2025-2026 – 
+> Programme 2025-2026 – Club GI ENSPY
 
 ---
 
