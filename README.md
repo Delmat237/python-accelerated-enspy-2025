@@ -141,5 +141,3 @@ Ce projet est distribué sous licence MIT. Voir [LICENSE](./LICENSE).
 
 ```
 
----
-
