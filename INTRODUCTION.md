@@ -36,11 +36,21 @@ En tant qu'ingénieurs, vous n'apprenez pas seulement Python pour coder, mais po
 
 Dans cette formation accélérée, notre objectif n'est pas seulement l'exécution, mais l'adoption de la philosophie qui fait la force de Python.
 
-### 3.1. L'Élégance de la Syntaxe
+### 3.1. L'Élégance de la Syntaxe et la Standardisation (PEP)
 
 Python est souvent comparé à de la **pseudo-code exécutable**. L'absence de points-virgules et l'utilisation de l'**indentation** comme délimiteur de blocs de code forcent la lisibilité.
 
-* **Lisibilité = Maintenabilité :** Le code est lu beaucoup plus souvent qu'il n'est écrit. Un code lisible est un code qui coûte moins cher à maintenir pour l'entreprise. C'est pourquoi nous insisterons lourdement sur la norme **PEP 8** dès le premier jour.
+* **Lisibilité = Maintenabilité :** Le code est lu beaucoup plus souvent qu'il n'est écrit. Un code lisible est un code qui coûte moins cher à maintenir pour l'entreprise.
+
+#### 📝 Les Standards de Qualité (PEP)
+
+Dans un contexte professionnel, la conformité aux **Python Enhancement Proposals (PEP)** n'est pas une option, mais une exigence.
+
+| Référence PEP | Domaine | Exigence Clé dans ce Cours |
+| :--- | :--- | :--- |
+| **PEP 8** (Style Guide) | **Style de Codage** | **Indentation de 4 espaces**, utilisation du `snake_case` pour les variables et fonctions. |
+| **PEP 257** (Docstring Conventions) | **Documentation** | Chaque module, classe et fonction doit avoir une **Docstring** (chaîne de documentation) pour expliquer son rôle, ses arguments et son retour. |
+| **PEP 484** (Type Hinting) | **Qualité/Robustesse** | Utilisation des **annotations de type** (ex: `def func(x: int) -> str:`) pour améliorer la clarté et le débogage. |
 
 ### 3.2. Le "Glue Language" (Langage de Colle)
 
