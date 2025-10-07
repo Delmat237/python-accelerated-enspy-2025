@@ -7,15 +7,20 @@ Ce programme vous guide **du fondamental au déploiement**, en 6 mois intensifs,
 
 ## 📑 Sommaire
 
-- [🧭 Objectifs](#-objectifs)
-- [🗓️ Roadmap 6 Mois](#️-roadmap-6-mois)
-- [🧱 Structure du Dépôt](#-structure-du-dépôt)
-- [🛠️ Installation & Configuration](#️-installation--configuration)
-- [🧪 Validation Professionnelle](#-validation-professionnelle)
-- [📎 Ressources Utiles](#-ressources-utiles)
-- [🧠 Inspiré de](#-inspiré-de)
-- [🧑‍🏫 Crédits](#-crédits)
-- [📝 Licence](#-licence)
+- [🚀 Python Accéléré (L1 – L3) – Programme Intensif 6 Mois](#-python-accéléré-l1--l3--programme-intensif-6-mois)
+  - [📑 Sommaire](#-sommaire)
+  - [🧭 Objectifs](#-objectifs)
+  - [🗓️ Roadmap 6 Mois](#️-roadmap-6-mois)
+  - [🧱 Structure du Dépôt](#-structure-du-dépôt)
+  - [🛠️ Installation \& Configuration](#️-installation--configuration)
+    - [1. Cloner le dépôt](#1-cloner-le-dépôt)
+    - [2. Créer et activer un environnement virtuel](#2-créer-et-activer-un-environnement-virtuel)
+    - [3. Installer les dépendances communes](#3-installer-les-dépendances-communes)
+  - [🧪 Validation Professionnelle](#-validation-professionnelle)
+  - [📎 Ressources Utiles](#-ressources-utiles)
+  - [🧠 Inspiré de](#-inspiré-de)
+  - [🧑‍🏫 Crédits](#-crédits)
+  - [📝 Licence](#-licence)
 
 ---
 
@@ -51,6 +56,7 @@ Ce programme vous guide **du fondamental au déploiement**, en 6 mois intensifs,
 ├── .github/
 │   └── workflows/
 │       └── ci_cd_pipeline.yml
+├── INTRODUCTION.md
 ├── README.md
 ├── LICENSE
 ├── requirements.txt
