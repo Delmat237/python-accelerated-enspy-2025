@@ -64,6 +64,7 @@ Ce programme vous guide du fondamental au déploiement, en 6 mois intensifs, str
 ├── roadmap_python.pdf
 │
 ├── MOIS_1_FONDATIONS/                    # (Semaines 1 à 4 : Logique Algorithmique)
+│   ├── INSTALLATION_PREREQUIS.md #  Prérequis et Installation
 │   ├── SEMAINE_1_Syntaxe_Types.md        # Types de base, if/elif/else, PEP 8
 │   ├── SEMAINE_2_Boucles_Fonctions.md    # for/while, def, *args, Scope
 │   ├── SEMAINE_3_Structures_Donnees.md   # list, dict, tuple, Compréhensions
