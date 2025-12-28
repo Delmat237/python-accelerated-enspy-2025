@@ -1,0 +1,97 @@
+\documentclass[12pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[a4paper, margin=1in]{geometry}
+\usepackage{fancyhdr}
+\usepackage{amsmath}
+\usepackage{enumitem}
+\usepackage{listings}
+\usepackage{xcolor}
+
+% Configuration des listings pour le code Python
+\lstset{
+    language=Python,
+    basicstyle=\ttfamily\small,
+    keywordstyle=\color{blue},
+    stringstyle=\color{red},
+    commentstyle=\color{green!50!black},
+    numbers=left,
+    numberstyle=\tiny,
+    stepnumber=1,
+    numbersep=5pt,
+    showspaces=false,
+    showstringspaces=false,
+    frame=single,
+    breaklines=true,
+    breakatwhitespace=true,
+    tabsize=4
+}
+
+% En-tête et pied de page
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{TP 3 - Mois 3 : Python Avancé et Asynchronisme}
+\fancyhead[R]{21 janvier 2026}
+\fancyfoot[C]{\thepage}
+
+% Titre
+\title{\textbf{TP Intégrateur - Décorateurs, Programmation Asynchrone et Outillage Pro}}
+\author{}
+\date{}
+
+\begin{document}
+
+\maketitle
+
+\section*{ Objectifs du TP (3h)}
+
+Ce TP évalue votre maîtrise des concepts avancés de Python nécessaires pour le développement de systèmes haute performance et la gestion de projets professionnels.
+
+\section{ Décorateurs et Closures : Sécurité et Performance (45 min)}
+\textbf{Contexte :} Vous travaillez pour une startup de Fintech à Douala.
+
+\begin{itemize}
+    \item Créez une closure \texttt{generer\_id\_transaction(prefixe)} qui retourne une fonction générant des IDs successifs (ex: TX-1, TX-2).
+    \item Créez un décorateur \texttt{@verifier\_admin} qui vérifie si une variable globale \texttt{est\_admin} est à \texttt{True} avant d'exécuter une fonction.
+    \item Créez un décorateur \texttt{@timeout(secondes)} qui affiche un avertissement si une fonction prend plus de X secondes.
+\end{itemize}
+
+\section{ Programmation Asynchrone : Scraper de Prix (1h)}
+\textbf{Contexte :} Simulez la récupération de prix de cacao depuis 3 marchés différents en parallèle.
+
+\begin{itemize}
+    \item Utilisez \texttt{asyncio} et \texttt{await}.
+    \item Créez une fonction \texttt{recuperer\_prix(marche, delai\_simule)}.
+    \item Utilisez \texttt{asyncio.gather} pour lancer les 3 requêtes simultanément.
+    \item Gérez une erreur simulée (50\% de chances d'échec) avec un bloc \texttt{try/except} asynchrone.
+\end{itemize}
+
+\section{ Outillage Avancé : Logging et Configuration (30 min)}
+\textbf{Contexte :} Professionnalisez votre script de scraping.
+
+\begin{itemize}
+    \item Configurez un \texttt{logger} qui écrit les erreurs dans un fichier \texttt{errors.log} et les infos dans la console.
+    \item Utilisez \texttt{python-dotenv} pour charger l'URL de base du marché depuis un fichier \texttt{.env}.
+    \item Implémentez un \texttt{sys.excepthook} personnalisé pour logguer toute erreur non gérée.
+\end{itemize}
+
+\section{ Multi-threading : Traitement de Données (45 min)}
+\textbf{Contexte :} Vous devez transformer 500 images (simulation par \texttt{time.sleep}).
+
+\begin{itemize}
+    \item Utilisez \texttt{ThreadPoolExecutor} pour traiter 5 tâches en parallèle.
+    \item Comparez le temps d'exécution avec une approche synchrone classique.
+\end{itemize}
+
+\section{ Projet Final : Micro-Service de Monitoring (1h)}
+\textbf{Consigne :}
+Créez un script complet qui :
+1. Charge sa configuration depuis un \texttt{.env}.
+2. Possède un décorateur de logging pour chaque fonction.
+3. Lance une vérification asynchrone de 5 URLs web.
+4. Enregistre les résultats dans un fichier de log avec horodatage.
+
+\textbf{Submission Procedure (Git) :} 
+Suivre la même procédure que les TPs précédents en utilisant la branche \texttt{tp\_python/tp3-<nom>-<prenom>}.
+
+\end{document}

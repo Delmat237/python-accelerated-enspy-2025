@@ -1,0 +1,106 @@
+\documentclass[12pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[a4paper, margin=1in]{geometry}
+\usepackage{fancyhdr}
+\usepackage{amsmath}
+\usepackage{enumitem}
+\usepackage{listings}
+\usepackage{xcolor}
+
+% Configuration des listings pour le code Python
+\lstset{
+    language=Python,
+    basicstyle=\ttfamily\small,
+    keywordstyle=\color{blue},
+    stringstyle=\color{red},
+    commentstyle=\color{green!50!black},
+    numbers=left,
+    numberstyle=\tiny,
+    stepnumber=1,
+    numbersep=5pt,
+    showspaces=false,
+    showstringspaces=false,
+    frame=single,
+    breaklines=true,
+    breakatwhitespace=true,
+    tabsize=4
+}
+
+% En-tête et pied de page
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{TP 2 - Mois 2 : POO et Architecture Logicielle}
+\fancyhead[R]{21 décembre 2025}
+\fancyfoot[C]{\thepage}
+
+% Titre
+\title{\textbf{TP Intégrateur - Programmation Orientée Objet (POO) et Tests Unitaires}}
+\author{}
+\date{}
+
+\begin{document}
+
+\maketitle
+
+\section*{ Objectifs du TP (3h)}
+
+Ce TP évalue votre capacité à concevoir une architecture logicielle robuste en utilisant les piliers de la POO : Encapsulation, Héritage, Polymorphisme. Vous devrez également valider votre code par des tests unitaires automatisés.
+
+\section{ Encapsulation : Gestion d'Hôpital (45 min)}
+\textbf{Contexte :} Concevez une classe \texttt{Patient} pour un hôpital à Yaoundé.
+
+\begin{itemize}
+    \item Attributs privés : \texttt{\_\_id}, \texttt{\_\_nom}, \texttt{\_\_dossier\_medical} (liste).
+    \item Utilisez \texttt{@property} pour accéder au nom.
+    \item Implémentez un setter pour le nom qui vérifie qu'il n'est pas vide.
+    \item Méthode \texttt{ajouter\_diagnostic(info)} pour remplir le dossier.
+\end{itemize}
+
+\begin{lstlisting}
+class Patient:
+    def __init__(self, id_patient, nom):
+        # Votre code ici...
+\end{lstlisting}
+
+\section{ Héritage et Polymorphisme : Flotte de Transport (1h)}
+\textbf{Contexte :} Une agence de voyage camerounaise gère différents types de véhicules.
+
+\begin{itemize}
+    \item Classe Mère : \texttt{Vehicule} avec méthode \texttt{calculer\_tarif(distance)}.
+    \item Sous-classes : \texttt{Bus} et \texttt{VoitureVIP}.
+    \item \texttt{Bus} : Tarif fixe de 500 FCFA/km.
+    \texttt{VoitureVIP} : Tarif de 1200 FCFA/km + service de bord (2000 FCFA).
+    \item Utilisez \texttt{super()} dans les constructeurs.
+\end{itemize}
+
+\section{ Méthodes de Classe et Statiques : Gestion Financière (30 min)}
+\textbf{Contexte :} Créez une classe \texttt{CompteBancaire}.
+
+\begin{itemize}
+    \item Attribut de classe : \texttt{taux\_interet = 0.03}.
+    \item Méthode de classe : \texttt{modifier\_taux(nouveau\_taux)}.
+    \item Méthode statique : \texttt{est\_numero\_valide(numero)} (vérifie si 10 chiffres).
+\end{itemize}
+
+\section{ Tests Unitaires : Validation des Calculs (45 min)}
+\textbf{Contexte :} Testez votre système de transport avec \texttt{pytest}.
+
+\begin{itemize}
+    \item Créez une fixture pour un \texttt{Bus}.
+    \item Testez le calcul du tarif pour une distance normale.
+    \item Testez que le tarif ne peut pas être négatif (levez une \texttt{ValueError}).
+\end{itemize}
+
+\section{ Projet Final : Système de Gestion de Bibliothèque (1h)}
+\textbf{Consigne :}
+Créez un système avec :
+1. Une classe \texttt{Livre} (Encapsulation).
+2. Une classe \texttt{LivreNumerique} qui hérite de \texttt{Livre}.
+3. Une classe \texttt{Bibliotheque} qui gère une liste de livres.
+4. Un fichier de test \texttt{test\_bibliotheque.py} validant l'ajout et l'emprunt.
+
+\textbf{Submission Procedure (Git) :} 
+Suivre la même procédure que le TP1 en utilisant la branche \texttt{tp\_python/tp2-<nom>-<prenom>}.
+
+\end{document}

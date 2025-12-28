@@ -1,0 +1,106 @@
+\documentclass[12pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[a4paper, margin=1in]{geometry}
+\usepackage{fancyhdr}
+\usepackage{amsmath}
+\usepackage{enumitem}
+\usepackage{listings}
+\usepackage{xcolor}
+
+% Configuration for Python code listings
+\lstset{
+    language=Python,
+    basicstyle=\ttfamily\small,
+    keywordstyle=\color{blue},
+    stringstyle=\color{red},
+    commentstyle=\color{green!50!black},
+    numbers=left,
+    numberstyle=\tiny,
+    stepnumber=1,
+    numbersep=5pt,
+    showspaces=false,
+    showstringspaces=false,
+    frame=single,
+    breaklines=true,
+    breakatwhitespace=true,
+    tabsize=4
+}
+
+% Header and Footer
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{TP 2 - Month 2: OOP and Software Architecture}
+\fancyhead[R]{December 21, 2025}
+\fancyfoot[C]{\thepage}
+
+% Title
+\title{\textbf{Integrative TP - Object-Oriented Programming (OOP) and Unit Testing}}
+\author{}
+\date{}
+
+\begin{document}
+
+\maketitle
+
+\section*{TP Objectives (3h)}
+
+This TP evaluates your ability to design a robust software architecture using the pillars of OOP: Encapsulation, Inheritance, Polymorphism. You will also have to validate your code through automated unit tests.
+
+\section{Encapsulation: Hospital Management (45 min)}
+\textbf{Context:} Design a \texttt{Patient} class for a hospital in Yaoundé.
+
+\begin{itemize}
+    \item Private attributes: \texttt{\_\_id}, \texttt{\_\_name}, \texttt{\_\_medical\_record} (list).
+    \item Use \texttt{@property} to access the name.
+    \item Implement a setter for the name that checks that it is not empty.
+    \item Method \texttt{add\_diagnosis(info)} to fill the record.
+\end{itemize}
+
+\begin{lstlisting}
+class Patient:
+    def __init__(self, patient_id, name):
+        # Your code here...
+\end{lstlisting}
+
+\section{Inheritance and Polymorphism: Transport Fleet (1h)}
+\textbf{Context:} A Cameroonian travel agency manages different types of vehicles.
+
+\begin{itemize}
+    \item Parent Class: \texttt{Vehicle} with \texttt{calculate\_fare(distance)} method.
+    \item Sub-classes: \texttt{Bus} and \texttt{VIPCar}.
+    \item \texttt{Bus}: Fixed rate of 500 FCFA/km.
+    \texttt{VIPCar}: Rate of 1200 FCFA/km + on-board service (2000 FCFA).
+    \item Use \texttt{super()} in constructors.
+\end{itemize}
+
+\section{Class and Static Methods: Financial Management (30 min)}
+\textbf{Context:} Create a \texttt{BankAccount} class.
+
+\begin{itemize}
+    \item Class attribute: \texttt{interest\_rate = 0.03}.
+    \item Class method: \texttt{change\_rate(new\_rate)}.
+    \item Static method: \texttt{is\_valid\_number(number)} (checks if 10 digits).
+\end{itemize}
+
+\section{Unit Testing: Calculation Validation (45 min)}
+\textbf{Context:} Test your transport system with \texttt{pytest}.
+
+\begin{itemize}
+    \item Create a fixture for a \texttt{Bus}.
+    \item Test the fare calculation for a normal distance.
+    \item Test that the fare cannot be negative (raise a \texttt{ValueError}).
+\end{itemize}
+
+\section{Final Project: Library Management System (1h)}
+\textbf{Instructions:}
+Create a system with:
+1. A \texttt{Book} class (Encapsulation).
+2. A \texttt{DigitalBook} class that inherits from \texttt{Book}.
+3. A \texttt{Library} class that manages a list of books.
+4. A test file \texttt{test\_library.py} validating adding and borrowing.
+
+\textbf{Submission Procedure (Git):} 
+Follow the same procedure as TP1 using the branch \texttt{tp\_python/tp2-<name>-<firstname>}.
+
+\end{document}

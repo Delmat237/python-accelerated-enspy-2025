@@ -1,0 +1,259 @@
+\documentclass[12pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[a4paper, margin=1in]{geometry}
+\usepackage{fancyhdr}
+\usepackage{amsmath}
+\usepackage{enumitem}
+\usepackage{listings}
+\usepackage{xcolor}
+
+% Configuration for Python code listings
+\lstset{
+    language=Python,
+    basicstyle=\ttfamily\small,
+    keywordstyle=\color{blue},
+    stringstyle=\color{red},
+    commentstyle=\color{green!50!black},
+    numbers=left,
+    numberstyle=\tiny,
+    stepnumber=1,
+    numbersep=5pt,
+    showspaces=false,
+    showstringspaces=false,
+    frame=single,
+    breaklines=true,
+    breakatwhitespace=true,
+    tabsize=4
+}
+
+% Header and Footer
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{TP 1 - Month 1: Types, Conditions, Loops, Functions, Structures}
+\fancyhead[R]{October 21, 2025}
+\fancyfoot[C]{\thepage}
+
+% Title
+\title{\textbf{Integrative TP - Concrete Exercises on Types, Conditions, Logic, Loops, Functions and Data Structures}}
+\author{}
+\date{}
+
+\begin{document}
+
+\maketitle
+
+\section*{TP Objectives (2h - 3h)}
+
+This sheet offers concrete exercises inspired by real everyday problems or engineering fields in Cameroon (e.g., agricultural management, health, local finance, education). The approach is \textbf{practical and code-first}: each exercise simulates a professional scenario to apply the concepts. \\
+\textbf{Required Material:} Python 3.11+, IDE (VS Code). Test each exercise by running the code.
+
+\section{Data Types: Real Agricultural Calculations (20 min)}
+
+\subsection{Exercise 1: Seed Cost}
+\textbf{Real Context:} In Cameroon, a farmer calculates the cost of seeds for a maize plot. Use types to manage quantities, prices, and descriptions.
+
+\begin{itemize}
+    \item Declare \texttt{bags\_quantity} (int), \texttt{price\_per\_bag} (float), \texttt{crop} (str).
+    \item Calculate the total (\texttt{bags\_quantity * price\_per\_bag}) and convert it to str with 2 decimal places.
+    \item Display a formatted message: "The cost for X bags of Y seeds is Z FCFA."
+\end{itemize}
+
+\begin{lstlisting}
+bags_quantity = 5  # Number of bags
+price_per_bag = 15000.50  # Price per bag in FCFA
+crop = "maize"
+# Your code here...
+total = # Calculation
+message = f"The cost for {bags_quantity} bags of {crop} seeds is {total:.2f} FCFA."
+print(message)
+\end{lstlisting}
+
+\newpage
+\subsection{Exercise 2: Unit Conversion}
+\begin{itemize}
+    \item Convert an area in hectares (float) to m² (int).
+    \item Handle an error if the area is negative.
+\end{itemize}
+
+\section{2. Conditions and Logic: Social Aid Eligibility (20 min)}
+
+\subsection{Exercise 3: Eligibility Verification}
+\textbf{Real Context:} In an aid program for vulnerable families in Cameroon, verify eligibility based on income, number of children, and status (rural/urban).
+
+\begin{itemize}
+    \item Ask for \texttt{monthly\_income} (float), \texttt{num\_children} (int), \texttt{is\_rural} (bool).
+    \item If income < 100000 FCFA AND num\_children > 2 OR is\_rural, display "Eligible for aid".
+    \item Otherwise, "Not eligible".
+\end{itemize}
+
+\begin{lstlisting}
+monthly_income = float(input("Monthly income (FCFA): "))
+num_children = int(input("Number of children: "))
+is_rural = input("Rural area? (yes/no) ") == "yes"
+# Your code here...
+if # Condition:
+    print("Eligible for aid")
+else:
+    print("Not eligible")
+\end{lstlisting}
+
+\subsection{Exercise 4: Aid Priority}
+\begin{itemize}
+    \item Use \texttt{elif} to classify into "High priority" (income < 50000), "Medium" (50000-100000), "Low" (other).
+\end{itemize}
+
+\section{3. Loops: Daily Harvest Tracking (30 min)}
+
+\subsection{Exercise 5: Daily Tracking}
+\textbf{Real Context:} A farmer tracks the cassava harvest over 7 days, alerting if a day is below average.
+
+\begin{itemize}
+    \item Use \texttt{for} with \texttt{range(1, 8)} to simulate days.
+    \item Generate a random yield (use \texttt{random.randint(50, 200)} kg/day).
+    \item If yield < 100, \texttt{continue}; if < 50, \texttt{break} and alert "Major problem".
+\end{itemize}
+
+\begin{lstlisting}
+import random
+for day in range(1, 8):
+    yield_val = random.randint(50, 200)
+    if yield_val < 50:
+        print(f"Day {day}: Major problem! Stopping.")
+        # break
+    elif yield_val < 100:
+        print(f"Day {day}: Low yield, skipping to next.")
+        # continue
+    print(f"Day {day}: Yield OK ({yield_val} kg)")
+\end{lstlisting}
+
+\subsection{Exercise 6: While Loop for Stock}
+\begin{itemize}
+    \item Use \texttt{while} to deduct from an initial stock (500 kg) until 0, subtracting daily sales (50-100 kg).
+\end{itemize}
+
+\section{4. Functions: Family Budget Tool (30 min)}
+
+\subsection{Exercise 7: Budget Calculation}
+\textbf{Real Context:} A Cameroonian family calculates their monthly budget for food, transport, and education.
+
+\begin{itemize}
+    \item Define \texttt{calculate_budget(food_expenses, transport_expenses, *other_expenses)} which sums everything and returns the total.
+    \item Use \texttt{*args} for other variable expenses.
+\end{itemize}
+
+\begin{lstlisting}
+def calculate_budget(food_expenses, transport_expenses, *other_expenses):
+    total = food_expenses + transport_expenses
+    for exp in other_expenses:
+        total += exp
+    return total
+
+# Test
+budget = calculate_budget(100000, 50000, 30000, 20000)  # Food, Transport, Education, Health
+print(f"Total budget: {budget} FCFA")
+\end{lstlisting}
+
+\subsection{Exercise 8: Function with Scope}
+\begin{itemize}
+    \item Add a global variable \texttt{subsidy = 20000} and subtract it in the function (without modifying the global).
+\end{itemize}
+
+\section{5. Data Structures: Medicine Inventory Management (30 min)}
+
+\subsection{Exercise 9: List for Stock}
+\textbf{Real Context:} In a rural pharmacy in Cameroon, manage medicine stock.
+
+\begin{itemize}
+    \item Create \texttt{medicine_stock = ["Paracetamol", "Antibiotic", "Vitamins"]}.
+    \item Add "Syrup" using \texttt{append}, remove "Antibiotic" using \texttt{remove}.
+\end{itemize}
+
+\begin{lstlisting}
+medicine_stock = ["Paracetamol", "Antibiotic", "Vitamins"]
+# Your code here...
+\end{lstlisting}
+
+\subsection{Exercise 10: Tuple for Dosages}
+\begin{itemize}
+    \item Declare \texttt{paracetamol_dosage = (500, "mg", "adult")}.
+    \item Unpack and display; try a modification to see the error.
+\end{itemize}
+
+\subsection{Exercise 11: Dictionary for Details}
+\begin{itemize}
+    \item Create \texttt{medicine_details = {"name": "Paracetamol", "price": 500, "quantity": 100}}.
+    \item Add "expiration": "2026-12" and iterate to display.
+\end{itemize}
+
+\begin{lstlisting}
+medicine_details = {"name": "Paracetamol", "price": 500, "quantity": 100}
+# Your code here...
+\end{lstlisting}
+
+\section{Integrative Project: Harvest Management System (30 min)}
+
+\subsection{Instructions}
+\textbf{Real Context:} A farmer tracks cocoa harvests over 5 days, calculates the average, identifies low-yield days, and stores the data in a dictionary.
+
+\begin{itemize}
+    \item Use a list for daily harvests (random 50-200 kg).
+    \item Function for average.
+    \item Loop with condition for days < 100 kg.
+    \item Dictionary to associate day with harvest.
+    \item Display if eligible for aid (average < 120 kg).
+\end{itemize}
+
+\begin{lstlisting}
+import random
+
+# Harvests list
+harvests = [random.randint(50, 200) for _ in range(5)]
+
+# Average function
+def average_harvests(harvests):
+    # Your code here...
+
+# Analysis
+results = {}
+for i, harvest in enumerate(harvests, 1):
+    results[f"Day {i}"] = harvest
+    if harvest < 100:
+        print(f"Day {i}: Low harvest ({harvest} kg)")
+
+avg = average_harvests(harvests)
+print(f"Average: {avg:.2f} kg")
+if avg < 120:
+    print("Eligible for agricultural aid")
+print(results)
+\end{lstlisting}
+
+\subsection{Deliverable}
+Save your complete Python codes with comments.
+
+\textbf{Submission Procedure (Git):} 
+\begin{enumerate}
+    \item \textbf{Clone the repository:} \\ 
+    \texttt{git clone https://github.com/club-genie-informatique-enspy/TP-PYTHON-TRAINING.git}
+    \item \textbf{Create a branch:} Create a new branch for your work.
+    \begin{itemize}
+        \item \textbf{Naming Convention:} \texttt{tp\_python/tp1-<your-last-name>-<your-first-name>} (e.g., \texttt{tp\_python/tp1-delmat-azangue})
+        \item \textbf{Command:} \texttt{git checkout -b tp\_python/tp1-<name>-<firstname>}
+    \end{itemize}
+    \item \textbf{Commit:} Stage, commit and add a clear message (e.g., \texttt{git commit -m "tp\_python(tp1): add harvest management system"}).
+    \item \textbf{Push:} Send your branch to the remote repository.
+    \item \textbf{Finalization:} Create a \textbf{Pull Request (PR)} to the \texttt{main} branch for review.
+\end{enumerate}
+
+\newpage
+
+\section*{⏳ Conclusion (15 min)}
+\begin{itemize}
+    \item \textbf{Review:} Share results, discuss real applications (e.g., agriculture in Cameroon).
+    \item \textbf{Feedback:} Note what was difficult (e.g., complex logic).
+    \item \textbf{Preparation:} Move on to Week 4 for I/O and robustness.
+\end{itemize}
+
+This TP uses real scenarios to ground the concepts in practice.
+
+\end{document}

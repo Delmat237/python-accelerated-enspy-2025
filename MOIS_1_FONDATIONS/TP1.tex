@@ -1,0 +1,259 @@
+\documentclass[12pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[a4paper, margin=1in]{geometry}
+\usepackage{fancyhdr}
+\usepackage{amsmath}
+\usepackage{enumitem}
+\usepackage{listings}
+\usepackage{xcolor}
+
+% Configuration des listings pour le code Python
+\lstset{
+    language=Python,
+    basicstyle=\ttfamily\small,
+    keywordstyle=\color{blue},
+    stringstyle=\color{red},
+    commentstyle=\color{green!50!black},
+    numbers=left,
+    numberstyle=\tiny,
+    stepnumber=1,
+    numbersep=5pt,
+    showspaces=false,
+    showstringspaces=false,
+    frame=single,
+    breaklines=true,
+    breakatwhitespace=true,
+    tabsize=4
+}
+
+% En-tête et pied de page
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{TP 1 - Mois 1 : Types, Conditions, Boucles, Fonctions, Structures}
+\fancyhead[R]{21 octobre 2025}
+\fancyfoot[C]{\thepage}
+
+% Titre
+\title{\textbf{TP Intégrateur - Exercices Concrets sur Types, Conditions, Logique, Boucles, Fonctions et Structures de Données}}
+\author{}
+\date{}
+
+\begin{document}
+
+\maketitle
+
+\section*{ Objectifs du TP (2h - 3h)}
+
+Cette fiche propose des exercices concrets, inspirés de problèmes réels du quotidien ou du domaine de l'ingénierie au Cameroun (ex. : gestion agricole, santé, finance locale, éducation). L'approche est \textbf{pratique et code-first} : chaque exercice simule un scénario professionnel pour appliquer les concepts. \\
+\textbf{Matériel Requis :} Python 3.11+, IDE (VS Code) Testez chaque exercice en exécutant le code.
+
+\section{ Types de Données : Calculs Agricoles Réels (20 min)}
+
+\subsection{Exercice 1 : Coût de Semences}
+\textbf{Contexte Réel :} Au Cameroun, un agriculteur calcule le coût de semences pour une parcelle de maïs. Utilisez des types pour gérer des quantités, prix et descriptions.
+
+\begin{itemize}
+    \item Déclarez \texttt{quantite\_sacs} (int), \texttt{prix\_sac} (float), \texttt{culture} (str).
+    \item Calculez le total (\texttt{quantite\_sacs * prix\_sac}) et convertissez-le en str avec 2 décimales.
+    \item Affichez un message formaté : "Le coût pour X sacs de semences de Y est Z FCFA."
+\end{itemize}
+
+\begin{lstlisting}
+quantite_sacs = 5  # Nombre de sacs
+prix_sac = 15000.50  # Prix par sac en FCFA
+culture = "maïs"
+# Votre code ici...
+total = # Calcul
+message = f"Le coût pour {quantite_sacs} sacs de semences de {culture} est {total:.2f} FCFA."
+print(message)
+\end{lstlisting}
+
+\newpage
+\subsection{Exercice 2 : Conversion de Unités}
+\begin{itemize}
+    \item Convertissez une surface en hectares (float) en m² (int).
+    \item Gérez une erreur si la surface est négative.
+\end{itemize}
+
+\section{2. Conditions et Logique : Éligibilité à l'Aide Sociale (20 min)}
+
+\subsection{Exercice 3 : Vérification d'Éligibilité}
+\textbf{Contexte Réel :} Dans un programme d'aide aux familles vulnérables au Cameroun, vérifiez l'éligibilité basée sur le revenu, le nombre d'enfants et le statut (rural/urbain).
+
+\begin{itemize}
+    \item Demandez \texttt{revenu\_mensuel} (float), \texttt{nb\_enfants} (int), \texttt{est\_rural} (bool).
+    \item Si revenu < 100000 FCFA ET nb\_enfants > 2 OU est\_rural, affichez "Éligible à l'aide".
+    \item Sinon, "Non éligible".
+\end{itemize}
+
+\begin{lstlisting}
+revenu_mensuel = float(input("Revenu mensuel (FCFA) : "))
+nb_enfants = int(input("Nombre d'enfants : "))
+est_rural = input("Zone rurale ? (oui/non) ") == "oui"
+# Votre code ici...
+if # Condition :
+    print("Éligible à l'aide")
+else:
+    print("Non éligible")
+\end{lstlisting}
+
+\subsection{Exercice 4 : Priorité d'Aide}
+\begin{itemize}
+    \item Utilisez \texttt{elif} pour classer en "Haute priorité" (revenu < 50000), "Moyenne" (50000-100000), "Basse" (autre).
+\end{itemize}
+
+\section{3. Boucles : Suivi de Récoltes Journalières (30 min)}
+
+\subsection{Exercice 5 : Suivi Quotidien}
+\textbf{Contexte Réel :} Un agriculteur suit la récolte de manioc sur 7 jours, en alertant si un jour est en dessous de la moyenne.
+
+\begin{itemize}
+    \item Utilisez \texttt{for} avec \texttt{range(1, 8)} pour simuler des jours.
+    \item Générez un rendement aléatoire (utilisez \texttt{random.randint(50, 200)} kg/jour).
+    \item Si rendement < 100, \texttt{continue} ; si < 50, \texttt{break} et alerte "Problème majeur".
+\end{itemize}
+
+\begin{lstlisting}
+import random
+for jour in range(1, 8):
+    rendement = random.randint(50, 200)
+    if rendement < 50:
+        print(f"Jour {jour}: Problème majeur ! Arrêt.")
+        # break
+    elif rendement < 100:
+        print(f"Jour {jour}: Rendement faible, passage au suivant.")
+        # continue
+    print(f"Jour {jour}: Rendement OK ({rendement} kg)")
+\end{lstlisting}
+
+\subsection{Exercice 6 : Boucle While pour Stock}
+\begin{itemize}
+    \item Utilisez \texttt{while} pour déduire un stock initial (500 kg) jusqu'à 0, en soustrayant des ventes quotidiennes (50-100 kg).
+\end{itemize}
+
+\section{4. Fonctions : Outil de Budget Familial (30 min)}
+
+\subsection{Exercice 7 : Calcul Budget}
+\textbf{Contexte Réel :} Une famille camerounaise calcule son budget mensuel pour nourriture, transport et éducation.
+
+\begin{itemize}
+    \item Définissez \texttt{calculer\_budget(depenses\_nourriture, depenses\_transport, *autres\_depenses)} qui somme tout et retourne le total.
+    \item Utilisez \texttt{*args} pour les autres dépenses variables.
+\end{itemize}
+
+\begin{lstlisting}
+def calculer_budget(depenses_nourriture, depenses_transport, *autres_depenses):
+    total = depenses_nourriture + depenses_transport
+    for dep in autres_depenses:
+        total += dep
+    return total
+
+# Test
+budget = calculer_budget(100000, 50000, 30000, 20000)  # Nourriture, Transport, Éducation, Santé
+print(f"Budget total : {budget} FCFA")
+\end{lstlisting}
+
+\subsection{Exercice 8 : Fonction avec Scope}
+\begin{itemize}
+    \item Ajoutez une variable globale \texttt{subvention = 20000} et soustrayez-la dans la fonction (sans modifier le global).
+\end{itemize}
+
+\section{5. Structures de Données : Gestion d'Inventaire de Médicaments (30 min)}
+
+\subsection{Exercice 9 : Liste pour Stock}
+\textbf{Contexte Réel :} Dans une pharmacie rurale au Cameroun, gérez un stock de médicaments.
+
+\begin{itemize}
+    \item Créez \texttt{stock\_medicaments = ["Paracétamol", "Antibiotique", "Vitamines"]}.
+    \item Ajoutez "Sirop" avec \texttt{append}, supprimez "Antibiotique" avec \texttt{remove}.
+\end{itemize}
+
+\begin{lstlisting}
+stock_medicaments = ["Paracétamol", "Antibiotique", "Vitamines"]
+# Votre code ici...
+\end{lstlisting}
+
+\subsection{Exercice 10 : Tuple pour Dosages}
+\begin{itemize}
+    \item Déclarez \texttt{dosage\_paracetamol = (500, "mg", "adulte")}.
+    \item Déstructurez et affichez ; tentez une modification pour voir l'erreur.
+\end{itemize}
+
+\subsection{Exercice 11 : Dictionnaire pour Détails}
+\begin{itemize}
+    \item Créez \texttt{details\_medicament = {"nom": "Paracétamol", "prix": 500, "quantite": 100}}.
+    \item Ajoutez "expiration": "2026-12" et itérez pour afficher.
+\end{itemize}
+
+\begin{lstlisting}
+details_medicament = {"nom": "Paracétamol", "prix": 500, "quantite": 100}
+# Votre code ici...
+\end{lstlisting}
+
+\section{ Projet Intégrateur : Système de Gestion de Récoltes (30 min)}
+
+\subsection{Consigne}
+\textbf{Contexte Réel :} Un agriculteur suit les récoltes de cacao sur 5 jours, calcule la moyenne, identifie les jours faibles, et stocke dans un dictionnaire.
+
+\begin{itemize}
+    \item Utilisez une liste pour les récoltes quotidiennes (random 50-200 kg).
+    \item Fonction pour moyenne.
+    \item Boucle avec condition pour jours < 100 kg.
+    \item Dictionnaire pour associer jour à récolte.
+    \item Affichez si éligible à aide (moyenne < 120 kg).
+\end{itemize}
+
+\begin{lstlisting}
+import random
+
+# Liste récoltes
+recoltes = [random.randint(50, 200) for _ in range(5)]
+
+# Fonction moyenne
+def moyenne_recoltes(recoltes):
+    # Votre code ici...
+
+# Analyse
+resultats = {}
+for i, recolte in enumerate(recoltes, 1):
+    resultats[f"Jour {i}"] = recolte
+    if recolte < 100:
+        print(f"Jour {i}: Récolte faible ({recolte} kg)")
+
+moyenne = moyenne_recoltes(recoltes)
+print(f"Moyenne : {moyenne:.2f} kg")
+if moyenne < 120:
+    print("Éligible à aide agricole")
+print(resultats)
+\end{lstlisting}
+
+\subsection{Livrable}
+Enregistrez vos codes Python complet  avec commentaires.
+
+\textbf{Procédure de Soumission (Git) :} 
+\begin{enumerate}
+    \item \textbf{Clonet le depôt : } \\ 
+    \texttt{git clone https://github.com/club-genie-informatique-enspy/TP-PYTHON-TRAINING.git}
+    \item \textbf{Création de la branche :} Créez une nouvelle branche pour votre travail.
+    \begin{itemize}
+        \item \textbf{Nomenclature :} \texttt{tp\_python/tp1-<votre-nom>-<votre-prenom>} (Ex: \texttt{tp\_python/tp1-delmat-azangue})
+        \item \textbf{Commande :} \texttt{git checkout -b tp\_python/tp1-<nom>-<prenom>}
+    \end{itemize}
+    \item \textbf{Commit :} Stoppez, commitez et ajoutez un message clair (Ex: \texttt{git commit -m "tp\_python(tp1): ajout systeme gestion recoltes"}).
+    \item \textbf{Push :} Envoyez votre branche vers le dépôt distant.
+    \item \textbf{Finalisation :} Créez une \textbf{Pull Request (PR)} vers la branche \texttt{main}  pour révision.
+\end{enumerate}
+
+\newpage
+
+\section*{⏳ Conclusion (15 min)}
+\begin{itemize}
+    \item \textbf{Revue :} Partagez les résultats, discutez des applications réelles (ex: agriculture au Cameroun).
+    \item \textbf{Feedback :} Notez ce qui était difficile (ex: logique complexe).
+    \item \textbf{Préparation :} Passez à la semaine 4 pour I/O et robustesse.
+\end{itemize}
+
+Ce TP utilise des scénarios réels pour ancrer les concepts dans la pratique.
+
+\end{document}

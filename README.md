@@ -69,6 +69,8 @@ Ce programme vous guide du fondamental au déploiement, en 6 mois intensifs, str
 │   ├── SEMAINE_2_Boucles_Fonctions.md    # for/while, def, *args, Scope
 │   ├── SEMAINE_3_Structures_Donnees.md   # list, dict, tuple, Compréhensions
 │   ├── SEMAINE_4_IO_Robustesse_Projet.md # with open, try/except, Module random
+│   ├── TP1.md                            # Examen Final Mois 1 (FR)
+│   ├── TP1_EN.md                         # Month 1 Final Exam (EN)
 │   └── TP_Simulateur_Bourse/
 │       └── simulateur.py
 │
@@ -77,6 +79,8 @@ Ce programme vous guide du fondamental au déploiement, en 6 mois intensifs, str
 │   ├── SEMAINE_2_Heritage_Polymorphisme.md # super(), Dunder Methods (__str__)
 │   ├── SEMAINE_3_Methodes_Classe_Statiques.md # @classmethod, @staticmethod, Factory
 │   ├── SEMAINE_4_Tests_Unitaires_Pytest.md # Installation de pytest, assert, pytest.raises
+│   ├── TP2.md                            # Examen Final Mois 2 (FR)
+│   ├── TP2_EN.md                         # Month 1 Final Exam (EN)
 │   ├── cours_poo_avance.tex                # Le cours théorique (LaTeX)
 │   ├── tests/
 │   │   └── test_systeme_bancaire.py        # Suite de tests Pytest (Livrable S4)
@@ -88,6 +92,8 @@ Ce programme vous guide du fondamental au déploiement, en 6 mois intensifs, str
 │   ├── SEMAINE_2_Asyncio_Threads.md      # Asyncio, threading
 │   ├── SEMAINE_3_Outillage_Avance.md     # Gestion erreurs, logging
 │   ├── SEMAINE_4_Scraper_Projet.md       # Projet scraper asynchrone
+│   ├── TP3.md                            # Examen Final Mois 3 (FR)
+│   ├── TP3_EN.md                         # Month 3 Final Exam (EN)
 │   └── Projet_Scraper/
 │       └── scraper_async.py
 │

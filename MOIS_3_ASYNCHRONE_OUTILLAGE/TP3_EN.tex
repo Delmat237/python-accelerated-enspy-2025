@@ -1,0 +1,97 @@
+\documentclass[12pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[a4paper, margin=1in]{geometry}
+\usepackage{fancyhdr}
+\usepackage{amsmath}
+\usepackage{enumitem}
+\usepackage{listings}
+\usepackage{xcolor}
+
+% Configuration for Python code listings
+\lstset{
+    language=Python,
+    basicstyle=\ttfamily\small,
+    keywordstyle=\color{blue},
+    stringstyle=\color{red},
+    commentstyle=\color{green!50!black},
+    numbers=left,
+    numberstyle=\tiny,
+    stepnumber=1,
+    numbersep=5pt,
+    showspaces=false,
+    showstringspaces=false,
+    frame=single,
+    breaklines=true,
+    breakatwhitespace=true,
+    tabsize=4
+}
+
+% Header and Footer
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{TP 3 - Month 3: Advanced Python and Asynchrony}
+\fancyhead[R]{January 21, 2026}
+\fancyfoot[C]{\thepage}
+
+% Title
+\title{\textbf{Integrative TP - Decorators, Asynchronous Programming and Pro Tooling}}
+\author{}
+\date{}
+
+\begin{document}
+
+\maketitle
+
+\section*{TP Objectives (3h)}
+
+This TP evaluates your mastery of advanced Python concepts necessary for high-performance system development and professional project management.
+
+\section{Decorators and Closures: Security and Performance (45 min)}
+\textbf{Context:} You are working for a Fintech startup in Douala.
+
+\begin{itemize}
+    \item Create a \texttt{generate_transaction_id(prefix)} closure that returns a function generating successive IDs (e.g., TX-1, TX-2).
+    \item Create a \texttt{@verify_admin} decorator that checks if a global variable \texttt{is_admin} is set to \texttt{True} before executing a function.
+    \item Create a \texttt{@timeout(seconds)} decorator that displays a warning if a function takes more than X seconds.
+\end{itemize}
+
+\section{Asynchronous Programming: Price Scraper (1h)}
+\textbf{Context:} Simulate fetching cocoa prices from 3 different markets in parallel.
+
+\begin{itemize}
+    \item Use \texttt{asyncio} and \texttt{await}.
+    \item Create a \texttt{fetch_price(market, simulated_delay)} function.
+    \item Use \texttt{asyncio.gather} to launch the 3 requests simultaneously.
+    \item Handle a simulated error (50\% chance of failure) with an asynchronous \texttt{try/except} block.
+\end{itemize}
+
+\section{Advanced Tooling: Logging and Configuration (30 min)}
+\textbf{Context:} Professionalize your scraping script.
+
+\begin{itemize}
+    \item Configure a \texttt{logger} that writes errors to an \texttt{errors.log} file and info to the console.
+    \item Use \texttt{python-dotenv} to load the base market URL from a \texttt{.env} file.
+    \item Implement a custom \texttt{sys.excepthook} to log any unhandled exception.
+\end{itemize}
+
+\section{Multi-threading: Data Processing (45 min)}
+\textbf{Context:} You need to transform 500 images (simulation through \texttt{time.sleep}).
+
+\begin{itemize}
+    \item Use \texttt{ThreadPoolExecutor} to process 5 tasks in parallel.
+    \item Compare the execution time with a classic synchronous approach.
+\end{itemize}
+
+\section{Final Project: Monitoring Micro-Service (1h)}
+\textbf{Instructions:}
+Create a complete script that:
+1. Loads its configuration from a \texttt{.env} file.
+2. Has a logging decorator for every function.
+3. Launches an asynchronous check of 5 web URLs.
+4. Records the results in a log file with timestamps.
+
+\textbf{Submission Procedure (Git):} 
+Follow the same procedure as previous TPs using the branch \texttt{tp\_python/tp3-<name>-<firstname>}.
+
+\end{document}
