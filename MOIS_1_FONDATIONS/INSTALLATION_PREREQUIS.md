@@ -6,7 +6,7 @@ Ce guide vous aide à configurer votre environnement de développement pour suiv
 
 -----
 
-## 1\. 📋 Prérequis
+## 1. 📋 Prérequis
 
 Avant de commencer, assurez-vous d'avoir :
 - Un ordinateur avec **Windows 10/11** ou **Ubuntu 20.04/22.04** (ou une distribution Linux équivalente).
@@ -15,7 +15,7 @@ Avant de commencer, assurez-vous d'avoir :
 
 -----
 
-## 2\. 💻 IDE Recommandés
+## 2. 💻 IDE Recommandés
 
 Un environnement de développement intégré (IDE) facilite l'écriture et le débogage du code. Voici les options populaires :
 - **Visual Studio Code (VSCode)** : Recommandé pour ce programme (léger, personnalisable, support Python natif).
@@ -27,7 +27,7 @@ Nous utiliserons **VSCode** comme IDE principal dans ce guide.
 
 -----
 
-## 3\. 🐍 Installation de Python
+## 3. 🐍 Installation de Python
 
 ### Sur Windows
 1. Téléchargez la dernière version de Python (recommandé : 3.11 ou supérieur) depuis [python.org](https://www.python.org/downloads/).
@@ -56,7 +56,7 @@ Nous utiliserons **VSCode** comme IDE principal dans ce guide.
 
 -----
 
-## 4\. 🌐 Création et Activation d'un Environnement Virtuel
+## 4. 🌐 Création et Activation d'un Environnement Virtuel
 
 Les environnements virtuels isolent les dépendances par projet, une pratique essentielle pour la reproductibilité.
 
@@ -94,7 +94,7 @@ Les environnements virtuels isolent les dépendances par projet, une pratique es
 
 -----
 
-## 5\. ⚙️ Configuration de VSCode
+## 5. ⚙️ Configuration de VSCode
 1. Téléchargez et installez VSCode depuis [code.visualstudio.com](https://code.visualstudio.com/).
 2. Installez l'extension **Python** (par Microsoft) via l'onglet Extensions.
 3. Ouvrez le dossier `MOIS_1_FONDATIONS` dans VSCode.
@@ -113,7 +113,7 @@ Les environnements virtuels isolent les dépendances par projet, une pratique es
 
 -----
 
-## 6\. 📦 Installation des Dépendances
+## 6. 📦 Installation des Dépendances
 1. Créez un fichier `requirements.txt` dans `MOIS_1_FONDATIONS` avec :
    ```
    pytest
@@ -137,4 +137,3 @@ print("Environnement prêt !")
 Exécutez-le avec `python test.py` (Windows) ou `python3 test.py` (Ubuntu). Pour désactiver l'environnement virtuel, utilisez `deactivate` sur les deux systèmes.
 
 **Préparation S1 :** Consultez `SEMAINE_1_Syntaxe_Types.md` pour débuter avec la syntaxe Python.
-

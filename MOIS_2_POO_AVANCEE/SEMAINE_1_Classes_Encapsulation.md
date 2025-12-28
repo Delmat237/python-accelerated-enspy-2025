@@ -1,4 +1,5 @@
-# MOIS_2_POO_AVANCEE/SEMAINE_1_Classes_Encapsulation.md  
+# MOIS_2_POO_AVANCEE/SEMAINE_1_Classes_Encapsulation.md : SEMAINE 1 : Classes et Encapsulation
+
 ### **Cours Complet – Explications Théoriques Avant le Code**
 
 ---
@@ -7,68 +8,23 @@
 
 | Objectif | Pourquoi c’est crucial ? |
 |---------|--------------------------|
-| **Comprendre la POO** | Modéliser le monde réel (banque, hôpital, agriculture) |
-| **Maîtriser `class` et `__init__`** | Créer des objets réutilisables |
-| **Appliquer l’encapsulation** | Protéger les données critiques (ex: solde bancaire) |
-| **Utiliser `@property`** | Contrôler l’accès sans casser l’interface |
-| **TP Réel** | Construire un **système bancaire complet** |
+| **Comprendre la POO** | Modéliser le monde réel (banque, hôpital, agriculture). |
+| **Maîtriser `class` et `__init__`** | Créer des objets réutilisables et cohérents. |
+| **Appliquer l’encapsulation** | Protéger les données critiques (ex: solde bancaire). |
+| **Utiliser `@property`** | Contrôler l’accès sans casser l’interface publique. |
+| **TP Réel** | Construire un **système bancaire complet**. |
 
 ---
 
 ## 1. Introduction à la POO : Pourquoi ? (30 min – Théorie)
 
-> **Avant le code, on comprend le besoin.**
+> **"Tout est objet en Python."**  
+> Si vous faites `type(5)` ou `type("hello")`, Python vous répondra `<class 'int'>` ou `<class 'str'>`. La POO n'est pas une option, c'est le cœur de Python.
 
 ### Problème Réel : Gestion d’un Compte Bancaire
 
-Imaginez un **système bancaire** au Cameroun (MTN MoMo, Orange Money, ou banque classique).  
-Un compte a :
-- Un **titulaire** (nom)
-- Un **solde** (argent)
-- Des **opérations** (dépôt, retrait)
-- Un **historique**
-
----
-
-### Sans POO → Code Spaghettis
-
-```python
-# 5 variables globales
-titulaire1 = "Kamga"
-solde1 = 50000
-historique1 = []
-
-titulaire2 = "Njoya"
-solde2 = 100000
-historique2 = []
-
-# 10 fonctions
-def deposer1(montant): ...
-def deposer2(montant): ...
-# → 20 fonctions, code dupliqué, erreurs faciles
-```
-
-**Problèmes** :
-- Code **dupliqué**
-- Risque d’erreur (solde1 modifié par erreur)
-- Impossible à maintenir
-
----
-
-### Avec POO → Code Propre, Sûr, Évolutif
-
-```python
-compte1 = CompteBancaire("Kamga", 50000)
-compte2 = CompteBancaire("Njoya", 100000)
-
-compte1.deposer(20000)
-compte2.retirer(15000)
-```
-
-**Avantages** :
-- **Une seule classe** → réutilisable
-- **Données protégées** → pas d’accès direct au solde
-- **Évolutif** → ajouter `CompteEpargne`, `CompteCourant`
+Un compte a des données (solde, titulaire) et des comportements (déposer, retirer).  
+Sans POO, les données sont éparpillées. Avec POO, elles sont soudées dans une entité unique : **L'Objet**.
 
 ---
 
@@ -76,234 +32,112 @@ compte2.retirer(15000)
 
 ### Qu’est-ce qu’une **Classe** ?
 
-> **Un plan de construction** pour créer des objets.
+C'est le **moule**. L'**Objet** (ou instance) est le gâteau sorti du moule.
 
-| Concept | Analogie | Exemple |
+| Concept | Analogie | Code |
 |--------|---------|--------|
-| **Classe** | Plan d’une voiture | `class CompteBancaire` |
-| **Objet** | Voiture construite | `compte = CompteBancaire(...)` |
-| **Attribut** | Caractéristique | `titulaire`, `solde` |
-| **Méthode** | Action | `deposer()`, `retirer()` |
+| **Classe** | Plan d’une voiture | `class Voiture:` |
+| **Objet** | Une Toyota spécifique | `ma_voiture = Voiture()` |
+| **Attribut** | État (Couleur, Vitesse) | `self.couleur = "Rouge"` |
+| **Méthode** | Action (Rouler, Freiner) | `def rouler(self):` |
 
 ---
 
-### `self` : Qui suis-je ?
+### `self` : Le lien vers l'instance
 
-```python
-def deposer(self, montant):
-    self.solde += montant  # ← "mon" solde
-```
+`self` représente l'objet spécifique qui appelle la méthode. Sans lui, Python ne saurait pas quel solde modifier si vous avez 1000 comptes ouverts.
 
-- `self` = **l’objet courant**
-- Permet de distinguer `compte1.solde` de `compte2.solde`
-
----
-
-### `__init__` : Le Constructeur
-
-```python
-def __init__(self, titulaire, solde_initial=0):
-    self.titulaire = titulaire
-    self._solde = solde_initial
-```
-
-- Appelé **automatiquement** à la création
-- Initialise les attributs
+> [!IMPORTANT]
+> **Deep Dive : Le constructeur `__init__`**  
+> Ce n'est pas strictement "le créateur" de l'objet (c'est `__new__` qui le fait), mais c'est l'**initialiseur**. Il prépare l'objet juste après sa naissance en lui donnant ses valeurs de départ.
 
 ---
 
 ## 3. Encapsulation : Protéger les Données (45 min – Théorie)
 
-> **Ne pas laisser n’importe qui toucher au solde !**
+### Le Concept du "Secret professionnel"
 
-### Niveaux de Protection
+En POO, on ne veut pas que l'utilisateur modifie directement les entrailles de l'objet. On utilise des conventions :
 
-| Préfixe | Visibilité | Exemple |
+| Préfixe | Signification | Comportement Python |
 |--------|-----------|--------|
-| `public` | Tout le monde | `self.titulaire` |
-| `_protegé` | Convention (interne) | `self._solde` |
-| `__prive` | Name mangling | `self.__historique` |
+| `nom` | **Public** | Accessible partout. |
+| `_nom` | **Protégé** | *Convention* : "S'il vous plaît, ne touchez pas à ça depuis l'extérieur". |
+| `__nom` | **Privé** | **Name Mangling** : Python change le nom interne (ex: `_Compte__nom`) pour rendre l'accès accidentel très difficile. |
 
 ---
 
-### `@property` : Accès Contrôlé
+### `@property` : La Puissance des Getters/Setters
+
+Plutôt que de faire `get_solde()` et `set_solde()`, Python propose une syntaxe élégante :
 
 ```python
-@property
-def solde(self):
-    return self._solde  # Lecture OK
+class Compte:
+    def __init__(self):
+        self._solde = 0
 
-@solde.setter
-def solde(self, valeur):
-    raise AttributeError("Interdit !")
+    @property
+    def solde(self):
+        return f"{self._solde} FCFA"
+
+    @solde.setter
+    def solde(self, valeur):
+        if valeur < 0:
+            raise ValueError("Solde négatif interdit !")
+        self._solde = valeur
 ```
 
-**Pourquoi ?**
-- Empêche : `compte.solde = -1000`
-- Force l’usage de `deposer()` / `retirer()`
+> [!TIP]
+> **Pro Tip : L'interface uniforme**  
+> Grâce à `@property`, vous pouvez transformer un simple attribut en une méthode calculée plus tard, sans que les gens qui utilisent votre code n'aient à changer leur façon d'écrire `objet.solde`. C'est la clé de la maintenance à long terme.
 
 ---
 
-## 4. Représentation des Objets (15 min)
+## 4. TP Intégrateur : Système Bancaire (45 min)
 
-| Méthode | Usage |
-|--------|-------|
-| `__str__` | Affichage utilisateur (`print(obj)`) |
-| `__repr__` | Débogage (`repr(obj)`) |
-
----
-
-## 5. TP Intégrateur : Système Bancaire (45 min – Explication Avant Code)
-
-### Objectif du TP
-
-Construire un **système bancaire complet** avec :
-- Classe `CompteBancaire`
-- Encapsulation totale
-- Historique des transactions
-- Relevé bancaire formaté
-- Intérêts annuels
-
----
-
-### Structure du Projet
-
-```bash
-TP_Systeme_Bancaire/
-├── compte_bancaire.py     ← Class POO
-└── main.py                ← Démonstration
-```
-
----
-
-## 6. Code Complet (Après la Théorie)
-
-> **Maintenant que tout est clair, voici le code.**
-
-### `compte_bancaire.py`
+### `compte_bancaire.py` (Extrait enrichi)
 
 ```python
-from datetime import datetime
-from typing import List, Dict
-
 class CompteBancaire:
-    """Représente un compte bancaire sécurisé."""
-    
-    # Attribut de classe
-    taux_interet = 0.03  # 3% annuel
-
     def __init__(self, titulaire: str, solde_initial: float = 0.0):
-        """Crée un nouveau compte."""
         self.titulaire = titulaire
-        self._solde = max(solde_initial, 0)  # Pas de solde négatif
-        self.__historique: List[Dict] = []
-        self._ajouter_transaction("Création", self._solde)
+        self._solde = solde_initial
+        self.__secret_banque = "Code-123" # Privé (Name mangling)
 
-    def _ajouter_transaction(self, type_op: str, montant: float):
-        """Enregistre une opération dans l'historique (privé)."""
-        self.__historique.append({
-            "date": datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
-            "type": type_op,
-            "montant": montant,
-            "solde": self._solde
-        })
-
-    def deposer(self, montant: float) -> bool:
-        """Dépose de l'argent."""
-        if not self.est_montant_valide(montant):
-            raise ValueError("Montant doit être positif")
+    def deposer(self, montant: float):
+        if montant <= 0:
+            raise ValueError("Montant positif requis")
         self._solde += montant
-        self._ajouter_transaction("Dépôt", montant)
-        return True
-
-    def retirer(self, montant: float) -> bool:
-        """Retire de l'argent si fonds suffisants."""
-        if not self.est_montant_valide(montant):
-            raise ValueError("Montant invalide")
-        if montant > self._solde:
-            raise ValueError(f"Fonds insuffisants: {self._solde:,.2f} FCFA")
-        self._solde -= montant
-        self._ajouter_transaction("Retrait", -montant)
-        return True
+        print(f"Nouveau solde : {self.solde}")
 
     @property
-    def solde(self) -> float:
-        """Lecture seule du solde."""
+    def solde(self):
         return self._solde
-
-    @property
-    def historique(self) -> List[Dict]:
-        """Historique en lecture seule."""
-        return self.__historique.copy()
-
-    def generer_releve(self) -> str:
-        """Génère un relevé bancaire formaté."""
-        lignes = [f"Relevé de {self.titulaire}", "="*60]
-        for t in self.__historique:
-            signe = "+" if t["montant"] >= 0 else ""
-            lignes.append(
-                f"{t['date']} | {t['type']:8} | {signe}{t['montant']:8.2f} | "
-                f"Solde: {t['solde']:8.2f}"
-            )
-        return "\n".join(lignes)
-
-    @classmethod
-    def appliquer_interets(cls, compte) -> float:
-        """Applique les intérêts annuels."""
-        interet = compte._solde * cls.taux_interet
-        compte.deposer(interet)
-        return interet
-
-    @staticmethod
-    def est_montant_valide(montant) -> bool:
-        """Vérifie la validité d’un montant."""
-        return isinstance(montant, (int, float)) and montant > 0
-
-    def __str__(self) -> str:
-        return f"Compte[{self.titulaire}] Solde: {self._solde:,.2f} FCFA"
-
-    def __repr__(self) -> str:
-        return f"CompteBancaire('{self.titulaire}', {self._solde})"
 ```
 
----
-
-### `main.py`
-
-```python
-from compte_bancaire import CompteBancaire
-
-# Création
-compte = CompteBancaire("M. Kamga", 50000)
-
-# Opérations
-compte.deposer(25000)
-compte.retirer(10000)
-compte.deposer(30000)
-
-# Intérêts
-interet = CompteBancaire.appliquer_interets(compte)
-
-# Affichage
-print(compte)
-print(f"\nIntérêts gagnés : {interet:,.2f} FCFA")
-print("\n" + compte.generer_releve())
-```
+> [!WARNING]
+> **Piège Courant : Les Imports Circulaires**  
+> Si la classe `Banque` a besoin de `Compte` et que `Compte` a besoin de `Banque`, votre programme va planter.  
+> *Solution :* Importez uniquement ce qui est nécessaire à l'intérieur des méthodes, ou utilisez le type-hinting sous forme de chaîne de caractères `"Banque"`.
 
 ---
 
-## 7. Conclusion & Préparation Semaine 3
+## 🧪 TP SUPPLÉMENTAIRES (Pour aller plus loin)
 
-| Ce que vous savez maintenant |
-|------------------------------|
-| Créer des **classes robustes** |
-| **Protéger** les données critiques |
-| Utiliser **`@property`** comme un pro |
-| Générer des **relevés formatés** |
+### Exercice 1 : Gestionnaire de Stock POO
+Créez une classe `Produit` avec `nom`, `prix`, et `quantite`.
+Utilisez une `@property` pour `prix` qui empêche de fixer un prix inférieur à 100 FCFA.
+Ajoutez une méthode `vendre(n)` qui diminue la quantité et affiche une erreur si le stock est insuffisant.
+
+### Exercice 2 : Cercle et Rayon
+Créez une classe `Cercle`.
+L'attribut est `rayon`.
+Ajoutez des propriétés pour `diametre` et `surface` (calculées à la volée).
+Si on change le `diametre` via un setter, le `rayon` doit se mettre à jour automatiquement !
 
 ---
 
-## Prochaine Semaine
-> **SEMAINE 2 : Héritage, Polymorphisme, Dunder Methods**  
-> `CompteEpargne`, `CompteCourant`, `super()`, `__add__`, etc.
+## ⏳ Conclusion & Préparation Semaine 2
 
+  * **Revue :** Quelle est la différence entre `_var` et `__var` ?
+  * **Prochaine Semaine :** Nous verrons comment créer des familles de classes (Héritage) et comment une même commande peut avoir plusieurs effets (Polymorphisme).

@@ -1,166 +1,139 @@
-# 🛠️ MOIS\_1\_FONDATIONS/SEMAINE\_2\_Boucles\_Fonctions.md : Boucles et Fonctions - L'Automatisation
+# 🛠️ MOIS_1_FONDATIONS/SEMAINE_2_Boucles_Fonctions.md : SEMAINE 2 : Boucles et Fonctions
 
 ## 🎯 Objectifs de la Session (2h - 2h30)
 
 | Mode | Objectif Pratique | Compétences Validées |
 | :--- | :--- | :--- |
-| **Automatisation** | Écrire des scripts pour traiter chaque élément d'une liste ou simuler un processus itératif. | Maîtrise de **`for`**, **`while`**, **`range()`**, **`break`/`continue`**. |
-| **Modularité** | Créer des blocs de code réutilisables, documentés et avec des signatures claires. | Utilisation de **`def`**, **`return`**, **arguments nommés** (PEP 257). |
-| **Avancé** | Concevoir une fonction acceptant un nombre variable d'arguments. | Introduction à **`*args`** et au concept de **Scope**. |
+| **Automatisation** | Traiter des listes ou simuler un processus itératif. | Maîtrise de **`for`**, **`while`**, **`range()`**, **`break`/`continue`**. |
+| **Modularité** | Créer des blocs de code réutilisables et documentés. | Utilisation de **`def`**, **`return`**, **arguments nommés** (PEP 257). |
+| **Avancé** | Fonction acceptant un nombre variable d'arguments. | Introduction à **`*args`** et au **Scope**. |
 
 -----
 
-## 1\. 🔄 L'Automatisation : Les Boucles (60 min)
+## 1. 🔄 L'Automatisation : Les Boucles (60 min)
 
-Les boucles permettent d'exécuter une tâche répétitive efficacement sans dupliquer le code.
+Les boucles permettent d'exécuter une tâche répétitive efficacement.
 
-### Défi 1 : Suivi de Production Séquencé
+### Défi 1 : Suivi de Production
 
-**Objectif :** Simuler l'inspection de 10 lots de production, signaler un lot défectueux avec `break` et ignorer un lot avec `continue`.
+**Objectif :** Simuler l'inspection de 10 lots avec `break` et `continue`.
 
 #### 📝 Code Guidé : `for`, `break` et `continue`
 
 ```python
-# Liste simulant l'état des lots (1: OK, 0: Défectueux, -1: Inspection ratée)
+# États : (1: OK, 0: Défectueux, -1: Raté)
 etats_inspection = [1, 1, 0, 1, -1, 1, 1, 0, 1, 1]
 
 print("--- Début du Contrôle Qualité ---")
 
-# Utiliser enumerate() est idiomatique pour obtenir à la fois l'index et la valeur
 for numero_lot, statut in enumerate(etats_inspection, start=1):
     if statut == 0:
-        print(f"❌ Lot n°{numero_lot}: DÉFECTUEUX. Arrêt immédiat (break).")
-        # break sort immédiatement de la boucle
+        print(f"❌ Lot n°{numero_lot}: DÉFECTUEUX. Arrêt (break).")
         break
     if statut == -1:
-        print(f"⚠️ Lot n°{numero_lot}: Inspection Ratée. Passage au suivant (continue).")
-        # continue passe immédiatement à l'itération suivante
+        print(f"⚠️ Lot n°{numero_lot}: Inspection Ratée. Saut (continue).")
         continue
-    print(f"✅ Lot n°{numero_lot}: Conforme. Poursuite...")
+    print(f"✅ Lot n°{numero_lot}: Conforme.")
 
 print("--- Fin du Contrôle Qualité ---")
 ```
 
-#### 💡 Théorie Détaillée : Les Paradigmes d'Itération
+#### 💡 Théorie Détaillée : Itération
 
 | Concept | `for` (Itérateur) | `while` (Conditionnel) |
 | :--- | :--- | :--- |
-| **Usage Principal** | Idéal pour itérer sur un **itérable** (`list`, `range`, `dict`). Utiliser **`enumerate()`** est la bonne pratique pour suivre l'index. | Idéal lorsque le **nombre d'itérations est inconnu** et dépend d'une condition externe (`tant que le solde est > 0`). |
-| **Risque** | Faible. L'itération est finie par la taille de la séquence. | Élevé. Nécessite une variable d'incrémentation ou de contrôle pour éviter la **boucle infinie**. |
-| **`range()`** | Une séquence générée "à la volée" (paresseuse), très efficace en mémoire. C'est l'équivalent du `for (i=0; i<N; i++)` des autres langages. | Non applicable directement. |
-| **Gestion du Flux** | **`break`** (Arrêt total de la boucle) et **`continue`** (Saut de l'itération actuelle). | Idem. |
+| **Usage** | Parcourir un **itérable** (`list`, `range`). | Tant qu'une condition est vraie. |
+| **Risque** | Faible. | Élevé (boucles infinies). |
+| **`range()`** | Séquence générée "à la volée" (efficace). | n/a |
 
------
+> [!WARNING]
+> **Piège Courant : Modifier une liste pendant l'itération**  
+> Évitez de supprimer des éléments d'une liste sur laquelle vous bouclez directement avec `for`. Cela décale les indices et sautera des éléments.  
+> *Solution :* Bouclez sur une copie `for item in ma_liste[:]:` ou utilisez une compréhension de liste.
 
-## 2\. 🧱 Modularité : Les Fonctions (75 min)
+---
 
-Les fonctions sont la base de la **modularité** et de la **réutilisabilité** du code. Elles encapsulent une logique précise, la rendant facile à tester et à maintenir.
+## 2. 🧱 Modularité : Les Fonctions (75 min)
 
-### Défi 2 : Le Calculateur de Rentabilité (Réutilisable)
+Les fonctions encapsulent une logique précise, la rendant facile à maintenir.
 
-**Objectif :** Créer une fonction calculant le bénéfice net après taxes, avec documentation (PEP 257) et arguments nommés.
+### Défi 2 : Le Calculateur de Rentabilité
+
+**Objectif :** Créer une fonction documentée calculant le bénéfice net.
 
 #### 📝 Code Guidé : `def`, `return` et `docstrings`
 
 ```python
-def calculer_benefice_net(revenu: float, cout_exploitation: float, taux_taxe: float = 0.25) -> float:
+def calculer_benefice_net(revenu: float, cout: float, taxe: float = 0.25) -> float:
     """
-    Calcule le bénéfice net après application d'un taux de taxe.
-    (Conforme PEP 257 pour la documentation)
+    Calcule le bénéfice net après taxes.
 
     Args:
-        revenu (float): Le revenu brut généré.
-        cout_exploitation (float): Les dépenses totales de l'entreprise.
-        taux_taxe (float, optional): Le taux de taxe à appliquer. Par défaut à 25%.
+        revenu (float): Revenu brut total.
+        cout (float): Dépenses totales.
+        taxe (float, optional): Taux d'imposition (default 0.25).
 
     Returns:
-        float: Le bénéfice net après taxes.
+        float: Le bénéfice net calculé.
     """
-    # Validation minimale (Robustesse M1/S1)
-    if revenu < 0 or cout_exploitation < 0:
+    if revenu < 0 or cout < 0:
         raise ValueError("Les montants ne peuvent pas être négatifs.")
         
-    benefice_brut = revenu - cout_exploitation
-    taxe = benefice_brut * taux_taxe
-    
-    # return est obligatoire pour que le résultat soit exploitable en dehors de la fonction
-    return benefice_brut - taxe
+    benefice_brut = revenu - cout
+    return benefice_brut * (1 - taxe)
 
-# Appels professionnels
-resultat_1 = calculer_benefice_net(100000, 30000, 0.30)
-# Utilisation d'arguments nommés pour une clarté maximale
-resultat_2 = calculer_benefice_net(cout_exploitation=25000, revenu=50000) 
-
-print(f"Résultat A (30% taxe): {resultat_1:.2f}€")
-print(f"Résultat B (25% taxe): {resultat_2:.2f}€")
+# Appels avec arguments nommés pour plus de clarté
+res = calculer_benefice_net(revenu=100000, cout=30000, taxe=0.30)
+print(f"Bénéfice Net : {res:.2f}€")
 ```
 
-#### 💡 Théorie Détaillée : Les Règles de la Modularité
+> [!TIP]
+> **Pro Tip : Type Hinting**  
+> Utilisez `:` et `->` (comme ci-dessus) pour indiquer les types attendus. Cela ne bloque pas l'exécution, mais aide énormément les IDE (comme VSCode) à vous suggérer les bonnes méthodes et à détecter les erreurs avant de lancer le code.
 
-| Concept | Explication Détaillée | Règle du Coder |
-| :--- | :--- | :--- |
-| **`return`** | Termine l'exécution de la fonction et renvoie une ou plusieurs valeurs à l'appelant. Sans `return` explicite, la fonction renvoie implicitement **`None`**. | **Ne pas `print` le résultat d'un calcul dans une fonction**; toujours le `return` pour que la valeur soit utilisable par d'autres fonctions. |
-| **`Docstrings` (PEP 257)** | La documentation doit être située juste après la signature de la fonction. Elle est accessible via `help(ma_fonction)`. | **Obligatoire.** Doit expliquer le rôle, l'usage des arguments (`Args`) et la valeur de retour (`Returns`). |
-| **Arguments Nommés** | Utiliser `cle=valeur` lors de l'appel (ex: `fonction(taux_taxe=0.30)`). Le code devient **auto-documenté**, le rôle de chaque valeur passée est clair. | **Bonne Pratique.** À privilégier, surtout si une fonction a plus de deux arguments. |
+---
 
------
+## 3. 🧠 Avancé : `*args` et Scope (30 min)
 
-## 3\. 🧠 Avancé : `*args` et Scope (30 min)
+### Défi 3 : Calculatrice Flexible
 
-### Défi 3 : La Calculatrice de Moyenne Flexible
+**Objectif :** Utiliser **`*args`** pour un nombre variable de notes.
 
-**Objectif :** Créer une fonction calculant la moyenne d'un nombre variable de notes avec **`*args`**.
-
-#### 📝 Code Guidé : L'opérateur `*args`
+#### 📝 Code Guidé : `*args`
 
 ```python
-def calculer_moyenne_generale(nom_matiere: str, *notes: float):
-    """Calcule la moyenne d'un nombre illimité de notes pour une matière donnée."""
-    # 'notes' est automatiquement agrégé en un tuple
-    
+def calculer_moyenne(matiere: str, *notes: float):
     if not notes:
-        print(f"Attention : Aucune note fournie pour {nom_matiere}.")
         return 0
-        
-    somme = sum(notes) 
-    nombre_notes = len(notes)
-    
-    print(f"Moyenne pour {nom_matiere} sur {nombre_notes} notes...")
-    return somme / nombre_notes
+    return sum(notes) / len(notes)
 
-# Tests flexibles
-print(f"Moyenne Math : {calculer_moyenne_generale('Mathématiques', 12, 14, 16):.2f}")
-print(f"Moyenne Info : {calculer_moyenne_generale('Informatique', 18, 17, 15, 12, 11):.2f}")
+print(f"Moyenne Math : {calculer_moyenne('Math', 12, 14, 16):.2f}")
 ```
 
-### 🧪 TP EXPRESS : Scope Local vs. Global (15 min)
+> [!IMPORTANT]
+> **Deep Dive : La règle LEGB (Scope)**  
+> Python cherche les variables dans cet ordre :  
+> 1. **L**ocal : Dans la fonction actuelle.  
+> 2. **E**nclosing : Dans la fonction parente (si imbrication).  
+> 3. **G**lobal : Au niveau du fichier.  
+> 4. **B**uilt-in : Fonctions de base de Python (ex: `len`, `sum`).
 
-**Consigne :** Analysez et exécutez ce code pour comprendre le Scope.
+---
 
-```python
-taux_global = 100  # Variable globale
+## 🧪 TP SUPPLÉMENTAIRES (Pour aller plus loin)
 
-def ma_fonction():
-    # Si on écrit : taux_global = 50, cela crée une NOUVELLE variable LOCALE
-    taux_local = 50  
-    print(f"Dans la fonction, le taux local est: {taux_local}")
+### Exercice 1 : Deviner le Nombre
+Créez un jeu où l'ordinateur choisit un nombre entre 1 et 100.
+Utilisez une boucle `while` pour demander à l'utilisateur de deviner.
+Indiquez "Plus grand" ou "Plus petit" jusqu'à ce qu'il trouve.
 
-ma_fonction()
-print(f"En dehors, le taux global est: {taux_global}")
-# Le taux global est resté 100.
-```
+### Exercice 2 : La Suite de Fibonacci
+Écrivez une fonction qui génère les `n` premiers nombres de la suite de Fibonacci.
+*Rappel :* Chaque nombre est la somme des deux précédents (0, 1, 1, 2, 3, 5, 8...).
 
-#### 💡 Théorie Détaillée : Le Scope (Portée)
-
-| Concept | Explication Détaillée | Conséquence |
-| :--- | :--- | :--- |
-| **Scope Local** | Espace de nom créé lors de l'appel de la fonction. Toutes les variables définies à l'intérieur sont **détruites** à la fin de la fonction (sauf si elles sont retournées). | La modification d'une variable globale *sans* le mot-clé `global` crée une nouvelle variable locale portant le même nom. **Séparation claire des responsabilités.** |
-| **Scope Global** | Espace de nom au niveau du module (fichier). Les variables ici sont accessibles par toutes les fonctions du fichier. | Les fonctions peuvent **lire** les variables globales, mais ne peuvent les **modifier** sans utiliser le mot-clé `global` (pratique généralement découragée). |
-| **`*args` (Arguments Variable)** | Agrège tous les arguments positionnels restants (ceux sans mot-clé) dans un **tuple**. Utilisé pour les fonctions qui nécessitent un nombre flexible d'entrées. | Le résultat est toujours un **tuple** (immutable), permettant une itération simple. |
-
------
+---
 
 ## ⏳ Conclusion de Session (15 min)
 
-  * **Revue de Code :** Correction des TP, insistance sur la bonne utilisation de `break` vs. `continue` et la validation du concept de Scope.
-  * **Préparation S3 :** Étudier **listes**, **dictionnaires**, **tuples** et **compréhensions**. La semaine prochaine sera dédiée à la **manipulation efficace des données**, essentielle pour la Data Science et les APIs.
+  * **Revue :** Pourquoi préférer les fonctions aux longs scripts ? (Réutilisabilité, testabilité, lisibilité).
+  * **Préparation S3 :** Nous verrons comment organiser des masses de données complexes avec les Dictionnaires.

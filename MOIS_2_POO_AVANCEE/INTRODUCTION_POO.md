@@ -1,6 +1,6 @@
-# MOIS_2_POO_AVANCEE/INTRODUCTION_POO.md
+# MOIS_2_POO_AVANCEE/INTRODUCTION_POO.md : Introduction à la POO
 
-## Introduction à la Programmation Orientée Objet (POO)  
+## Introduction à la Programmation Orientée Objet (POO)
 ### *Pourquoi la POO est essentielle pour un développeur Python professionnel*
 
 ---
@@ -52,10 +52,10 @@ class Voiture:
         self.marque = marque
         self.vitesse_max = vitesse_max
         self.vitesse = 0  # état interne
-
+    
     def accelerer(self, increment):
         self.vitesse = min(self.vitesse + increment, self.vitesse_max)
-
+    
     def freiner(self):
         self.vitesse = 0
 ```
@@ -110,4 +110,3 @@ MOIS_2_POO_AVANCEE/
 **Prochaine Étape** :  
 > **SEMAINE 1 : Classes et Encapsulation**  
 > `class`, `__init__`, `@property`, setters/getters
-
